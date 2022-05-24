@@ -8,7 +8,20 @@
  * Decide winner
  * Increase counters
  */
+let container = document.createElement('div');
+let rockBtn = document.createElement('button');
+let paperBtn = document.createElement('button');
+let scissorBtn = document.createElement('button');
 
+rockBtn.innerText = 'Rock';
+paperBtn.innerText = 'Paper';
+scissorBtn.innerText = 'Scissors';
+
+container.appendChild(rockBtn);
+container.appendChild(paperBtn);
+container.appendChild(scissorBtn);
+
+document.body.appendChild(container);
 /* Initialize variables */
 let computerPick;
 let userPick;
