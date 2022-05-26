@@ -8,20 +8,10 @@
  * Decide winner
  * Increase counters
  */
-let container = document.createElement('div');
-let rockBtn = document.createElement('button');
-let paperBtn = document.createElement('button');
-let scissorBtn = document.createElement('button');
 
-rockBtn.innerText = 'Rock';
-paperBtn.innerText = 'Paper';
-scissorBtn.innerText = 'Scissors';
+// Get elements from HTML
+const choiceBtns = document.querySelectorAll('.choice');
 
-container.appendChild(rockBtn);
-container.appendChild(paperBtn);
-container.appendChild(scissorBtn);
-
-document.body.appendChild(container);
 /* Initialize variables */
 let computerPick;
 let userPick;
@@ -43,20 +33,19 @@ function computerPlay() {
 }
 
 /* Make User choose */
-function userPlay() {
-  userPick = prompt('Rock, paper or scissors?');
+// function userPlay() {
+//   userPick = prompt('Rock, paper or scissors?');
 
-  return userPick.trim().toLowerCase();
-}
+//   return userPick.trim().toLowerCase();
+// }
+choiceBtns.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    alert(btn.value);
+  });
+});
 
 /* Play round */
-function playRound() {
-  let comSel = computerPlay();
-  let userSel = userPlay();
-
-  console.log(`Computer picks ${comSel}`);
-  console.log(`User picks ${userSel}`);
-
+function playRound(userSel, comSel) {
   /* Compare both choices */
   switch (userSel) {
     /* User picks rock */
@@ -109,20 +98,3 @@ function playRound() {
   }
   console.log(`Score: COM: ${comWins} - User: ${userWins}`);
 }
-
-/* Repeat for 5 rounds */
-function game() {
-  for (let i = 0; i < 5; i++) {
-    playRound();
-  }
-
-  if (userWins > comWins) {
-    console.log('User wins the game!');
-  } else if (userWins == comWins) {
-    console.log("It's a tie!");
-  } else {
-    console.log('Computer wins the game!');
-  }
-}
-
-game();
