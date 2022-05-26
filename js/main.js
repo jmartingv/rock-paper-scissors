@@ -61,7 +61,6 @@ function playRound(userSel, comSel) {
     case 'rock':
       /* Declare winner */
       if (comSel === 'paper') {
-        console.log('Computer wins!');
         comWins++;
 
         outcomeText.textContent = `You lose! ${comSel.replace(/^\w/, (c) =>
@@ -69,11 +68,9 @@ function playRound(userSel, comSel) {
         )} (COM) beats ${userSel} (You)`;
         break;
       } else if (comSel === 'rock') {
-        console.log("It's a tie!");
         outcomeText.textContent = `It\'s a tie! COM picked ${comSel} too!`;
         break;
       } else {
-        console.log('User wins!');
         userWins++;
         outcomeText.textContent = `You win! ${userSel.replace(/^\w/, (c) =>
           c.toUpperCase()
@@ -85,18 +82,15 @@ function playRound(userSel, comSel) {
     case 'paper':
       /* Declare winner */
       if (comSel === 'scissors') {
-        console.log('Computer wins!');
         comWins++;
         outcomeText.textContent = `You lose! ${comSel.replace(/^\w/, (c) =>
           c.toUpperCase()
         )} (COM) beats ${userSel} (You)`;
         break;
       } else if (comSel === 'paper') {
-        console.log("It's a tie!");
         outcomeText.textContent = `It\'s a tie! COM picked ${comSel} too!`;
         break;
       } else {
-        console.log('User wins!');
         userWins++;
         outcomeText.textContent = `You win! ${userSel.replace(/^\w/, (c) =>
           c.toUpperCase()
@@ -108,18 +102,15 @@ function playRound(userSel, comSel) {
     case 'scissors':
       /* Declare winner */
       if (comSel === 'rock') {
-        console.log('Computer wins!');
         comWins++;
         outcomeText.textContent = `You lose! ${comSel.replace(/^\w/, (c) =>
           c.toUpperCase()
         )} (COM) beats ${userSel} (You)`;
         break;
       } else if (comSel === 'scissors') {
-        console.log("It's a tie!");
         outcomeText.textContent = `It\'s a tie! COM picked ${comSel} too!`;
         break;
       } else {
-        console.log('User wins!');
         userWins++;
         outcomeText.textContent = `You win! ${userSel.replace(/^\w/, (c) =>
           c.toUpperCase()
