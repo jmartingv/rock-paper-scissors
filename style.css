@@ -2,4 +2,22 @@ body {
   font-family: 'Noto Sans JP', sans-serif;
   background-color: #ccc;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+}
+
+.choice {
+  font-size: xx-large;
+}
+
+.choice:hover {
+  transform: scale(1.1);
+  border-color: gold;
+  box-shadow: 0 0 1em gold;
 }

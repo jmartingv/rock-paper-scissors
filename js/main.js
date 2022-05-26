@@ -11,6 +11,8 @@
 
 // Get elements from HTML
 const choiceBtns = document.querySelectorAll('.choice');
+const pScore = document.querySelector('#pScore');
+const cScore = document.querySelector('#cScore');
 
 /* Initialize variables */
 let computerPick;
@@ -40,7 +42,7 @@ function computerPlay() {
 // }
 choiceBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
-    alert(btn.value);
+    playRound(btn.value, computerPlay());
   });
 });
 
@@ -96,5 +98,6 @@ function playRound(userSel, comSel) {
         break;
       }
   }
-  console.log(`Score: COM: ${comWins} - User: ${userWins}`);
+  pScore.textContent = `${userWins}`;
+  cScore.textContent = `${comWins}`;
 }
