@@ -130,6 +130,7 @@ resetBtn.addEventListener('click', () => {
   resetBtn.style.visibility = 'hidden';
   results.textContent = '';
   outcomeText.textContent = '';
+  disableButtons(false);
 });
 
 // Check if a player has 5 points
@@ -137,8 +138,16 @@ function winCheck(userScore, comScore) {
   if (userScore == 5 && comScore < 5) {
     results.textContent = 'Congratulations! You won!';
     resetBtn.style.visibility = 'visible';
+    disableButtons(true);
   } else if (comScore == 5 && userScore < 5) {
     results.textContent = 'You lose! Better luck next time!';
     resetBtn.style.visibility = 'visible';
+    disableButtons(true);
   }
+}
+
+function disableButtons(bool) {
+  choiceBtns.forEach((btn) => {
+    btn.disabled = bool;
+  });
 }
