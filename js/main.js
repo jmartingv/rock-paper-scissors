@@ -13,6 +13,14 @@
 const choiceBtns = document.querySelectorAll('.choice');
 const pScore = document.querySelector('#pScore');
 const cScore = document.querySelector('#cScore');
+const scoreDiv = document.querySelector('#score');
+
+const outcomeText = document.querySelector('.outcomeText');
+const results = document.querySelector('.results');
+const resetBtn = document.querySelector('.reset');
+
+scoreDiv.style.visibility = 'hidden';
+resetBtn.style.visibility = 'hidden';
 
 /* Initialize variables */
 let computerPick;
@@ -35,20 +43,19 @@ function computerPlay() {
 }
 
 /* Make User choose */
-// function userPlay() {
-//   userPick = prompt('Rock, paper or scissors?');
-
-//   return userPick.trim().toLowerCase();
-// }
 choiceBtns.forEach((btn) => {
   btn.addEventListener('click', () => {
+    scoreDiv.style.visibility = 'visible';
     playRound(btn.value, computerPlay());
+    winCheck(userWins, comWins);
   });
 });
 
 /* Play round */
 function playRound(userSel, comSel) {
-  /* Compare both choices */
+  /**
+   * Compare both choices
+   * Replace method is used to capitalize first letter using regex */
   switch (userSel) {
     /* User picks rock */
     case 'rock':
@@ -56,13 +63,21 @@ function playRound(userSel, comSel) {
       if (comSel === 'paper') {
         console.log('Computer wins!');
         comWins++;
+
+        outcomeText.textContent = `You lose! ${comSel.replace(/^\w/, (c) =>
+          c.toUpperCase()
+        )} (COM) beats ${userSel} (You)`;
         break;
       } else if (comSel === 'rock') {
         console.log("It's a tie!");
+        outcomeText.textContent = `It\'s a tie! COM picked ${comSel} too!`;
         break;
       } else {
         console.log('User wins!');
         userWins++;
+        outcomeText.textContent = `You win! ${userSel.replace(/^\w/, (c) =>
+          c.toUpperCase()
+        )} (You) beats ${comSel} (COM)`;
         break;
       }
 
@@ -72,13 +87,20 @@ function playRound(userSel, comSel) {
       if (comSel === 'scissors') {
         console.log('Computer wins!');
         comWins++;
+        outcomeText.textContent = `You lose! ${comSel.replace(/^\w/, (c) =>
+          c.toUpperCase()
+        )} (COM) beats ${userSel} (You)`;
         break;
       } else if (comSel === 'paper') {
         console.log("It's a tie!");
+        outcomeText.textContent = `It\'s a tie! COM picked ${comSel} too!`;
         break;
       } else {
         console.log('User wins!');
         userWins++;
+        outcomeText.textContent = `You win! ${userSel.replace(/^\w/, (c) =>
+          c.toUpperCase()
+        )} (You) beats ${comSel} (COM)`;
         break;
       }
 
@@ -88,16 +110,44 @@ function playRound(userSel, comSel) {
       if (comSel === 'rock') {
         console.log('Computer wins!');
         comWins++;
+        outcomeText.textContent = `You lose! ${comSel.replace(/^\w/, (c) =>
+          c.toUpperCase()
+        )} (COM) beats ${userSel} (You)`;
         break;
       } else if (comSel === 'scissors') {
         console.log("It's a tie!");
+        outcomeText.textContent = `It\'s a tie! COM picked ${comSel} too!`;
         break;
       } else {
         console.log('User wins!');
         userWins++;
+        outcomeText.textContent = `You win! ${userSel.replace(/^\w/, (c) =>
+          c.toUpperCase()
+        )} (You) beats ${comSel} (COM)`;
         break;
       }
   }
   pScore.textContent = `${userWins}`;
   cScore.textContent = `${comWins}`;
+}
+
+// Add event listener for reset button
+resetBtn.addEventListener('click', () => {
+  userWins = 0;
+  comWins = 0;
+  scoreDiv.style.visibility = 'hidden';
+  resetBtn.style.visibility = 'hidden';
+  results.textContent = '';
+  outcomeText.textContent = '';
+});
+
+// Check if a player has 5 points
+function winCheck(userScore, comScore) {
+  if (userScore == 5 && comScore < 5) {
+    results.textContent = 'Congratulations! You won!';
+    resetBtn.style.visibility = 'visible';
+  } else if (comScore == 5 && userScore < 5) {
+    results.textContent = 'You lose! Better luck next time!';
+    resetBtn.style.visibility = 'visible';
+  }
 }
